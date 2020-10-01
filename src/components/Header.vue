@@ -1,7 +1,12 @@
 <template>
   <header id="header">
     <div class="header">
-      <div class="header-1"><p>大众蔚领评测 | 曝iPhone12Mini参数</p></div>
+      <div class="header-1" @click="search">
+        <p>
+          <i><van-icon name="search" size="18"/></i>大众蔚领评测 |
+          曝iPhone12Mini参数
+        </p>
+      </div>
       <div class="header-2" @click="Issue">
         <div></div>
         <p>发布</p>
@@ -9,16 +14,16 @@
     </div>
     <div class="secnav">
       <ul>
-        <router-link tag='li' to='/first/attention'>关注</router-link>
-        <router-link tag='li' to='/first/recommend'>推荐</router-link>
-        <router-link tag='li' to='/first/loaclcity'>郑州</router-link>
-        <router-link tag='li' to='/first/epidemic'>抗疫</router-link>
-        <router-link tag='li' to='/first/hotsearch'>热榜</router-link>
-        <router-link tag='li' to='/first/gratis'>免费小说</router-link>
-        <router-link tag='li' to='/first/society'>社会</router-link>
-        <router-link tag='li' to='/first/recreation'>娱乐</router-link>
-        <router-link tag='li' to='/first/technology'>科技</router-link>
-        <router-link tag='li' to='/first/military'>军事</router-link>
+        <router-link tag="li" to="/first/attention">关注</router-link>
+        <router-link tag="li" to="/first/recommend">推荐</router-link>
+        <router-link tag="li" to="/first/loaclcity">郑州</router-link>
+        <router-link tag="li" to="/first/epidemic">抗疫</router-link>
+        <router-link tag="li" to="/first/hotsearch">热榜</router-link>
+        <router-link tag="li" to="/first/gratis">免费小说</router-link>
+        <router-link tag="li" to="/first/society">社会</router-link>
+        <router-link tag="li" to="/first/recreation">娱乐</router-link>
+        <router-link tag="li" to="/first/technology">科技</router-link>
+        <router-link tag="li" to="/first/military">军事</router-link>
         <router-view></router-view>
       </ul>
     </div>
@@ -34,6 +39,11 @@ export default {
     Issue() {
       this.$router.push({
         path: "/goissue",
+      });
+    },
+    search() {
+      this.$router.push({
+        path: "/search",
       });
     },
   },
@@ -60,14 +70,21 @@ export default {
   height: 35px;
   width: 86%;
   border-radius: 20px;
+
+  p {
+    height: 35px;
+    line-height: 35px;
+    margin-left: 8px;
+    font-size: 14px;
+    color: #222222;
+    i {
+      padding: 0 3px;
+      position: relative;
+      top: 2px;
+    }
+  }
 }
-#header .header .header-1 p {
-  height: 35px;
-  line-height: 35px;
-  margin-left: 30px;
-  font-size: 14px;
-  color: #222222;
-}
+
 #header .header .header-2 {
   width: 10%;
   margin-right: 1%;
@@ -98,15 +115,19 @@ export default {
   overflow: hidden;
   overflow-x: auto;
   white-space: nowrap;
+  // scrollbar-width: none; /* firefox */
+  // -ms-overflow-style: none; /* IE 10+ */
 }
-
+.secnav ul::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}
 #header .secnav ul li {
   padding: 0 10px;
   height: 36px;
   line-height: 36px;
   display: inline-block;
 }
-.router-link-exact-active{
+.router-link-exact-active {
   color: red;
   border-bottom: 2px solid red;
 }

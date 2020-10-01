@@ -117,8 +117,11 @@ const router = new VueRouter({
                     component: () => import("../views/goissue/smallvideo/index.vue"),
                 },
             ]
-
-
+        },
+        {
+            path: '/search',
+            name:'Search',
+            component: () => import("../views/search/index.vue"),
         },
     ]
 })

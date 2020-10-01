@@ -11,7 +11,7 @@
         <ul class="name">
           <li>
             <h4>{{ item.username}}</h4>
-            <i><van-icon name="cross" size="14"/></i>
+            <i><van-icon name="cross" size="14" color='#c7c7c7'/></i>
           </li>
           <li>
             <span>09-21 20:07 </span><span>工程师 </span
@@ -89,8 +89,7 @@ export default {
   background-color: #f2f2f2;
   // height: 100%;
   .moudle {
-    margin: 10px 0;
-    min-height: 20px;
+    margin-bottom: 7px;
     padding: 10px;
     background-color: #ffffff;
     .title {
@@ -121,8 +120,11 @@ export default {
           }
           i {
             position: absolute;
+            padding: 2px 6px ;
             top: 0;
             right: -26px;
+            background-color: #f8f8f8;
+            border-radius: 3px;
           }
           span {
             font-size: 14px;
@@ -176,3 +178,4 @@ export default {
   }
 }
 </style>
+s

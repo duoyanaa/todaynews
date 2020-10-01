@@ -152,15 +152,13 @@ export default {
   border: none;
 
   .showmessage {
-    margin: 20px 0 0 0;
-    // width: 30px;
+    margin-top: 20px;
     height: 80px;
-    padding: 0 2% 0 4%;
-    // background-color: yellowgreen;
     .picture {
       display: inline-block;
       border-radius: 50%;
       border: 1px solid skyblue;
+      margin-left: 2%;
     }
     .sssss {
       background-color: #f8f8f8;
