@@ -1,40 +1,48 @@
 <template>
   <div id="" class="attention">
-    <div class="moudle" v-for="(item, index) in list" :key="index">
-      <div class="title">
-        <div class="imgbox">
-          <img
-            :src=item.headportrait
-            alt=""
-          />
+    <ul
+      v-infinite-scroll="getList"
+      infinite-scroll-disabled="loading"
+      infinite-scroll-distance="80"
+    >
+      <li class="moudle" v-for="(item, index) in list" :key="index">
+        <div class="title">
+          <div class="imgbox">
+            <img :src="item.headportrait" alt="" />
+          </div>
+          <ul class="name">
+            <li>
+              <h4>{{ item.username }}</h4>
+              <i><van-icon name="cross" size="14" color="#c7c7c7"/></i>
+            </li>
+            <li>
+              <span>09-21 20:07 </span><span>工程师 </span
+              ><span>优质历史领域创作者</span>
+            </li>
+          </ul>
         </div>
-        <ul class="name">
-          <li>
-            <h4>{{ item.username}}</h4>
-            <i><van-icon name="cross" size="14" color='#c7c7c7'/></i>
-          </li>
-          <li>
-            <span>09-21 20:07 </span><span>工程师 </span
-            ><span>优质历史领域创作者</span>
-          </li>
-        </ul>
-      </div>
-      <div class="main">
-        <div class="main_text">
-          {{ item.message.article.text }}
+        <div class="main">
+          <div class="main_text">
+            {{ item.message.article.text }}
+          </div>
+          <div class="main_img">
+            <img :src="item.message.article.imgurl" alt="" />
+          </div>
         </div>
-        <div class="main_img">
-          <img :src="item.message.article.imgurl" alt="" />
+        <div class="talk">
+          <ul>
+            <li><van-icon name="share-o" size="18" /><span>分享</span></li>
+            <li><van-icon name="chat-o" size="18" /><span>评论</span></li>
+            <li><van-icon name="good-job-o" size="18" /><span>点赞</span></li>
+          </ul>
         </div>
-      </div>
-      <div class="talk">
-        <ul>
-          <li><van-icon name="share-o" size="18" /><span>分享</span></li>
-          <li><van-icon name="chat-o" size="18" /><span>评论</span></li>
-          <li><van-icon name="good-job-o" size="18" /><span>点赞</span></li>
-        </ul>
-      </div>
+      </li>
+    </ul>
+    <div class="nowLoading" v-show="nowLoading == true">
+      <i><van-loading size="20"/></i>
+      <p>正在加载中...</p>
     </div>
+    <div class="nodata" v-show="nodata == true">没有更多数据了...</div>
   </div>
 </template>
 
@@ -43,6 +51,11 @@ export default {
   components: {},
   data() {
     return {
+      nowLoading: false,
+      nodata: false,
+      start: 1,
+      nums: 5,
+      loading: false,
       list: [],
       img_base_url: "http://localhost:8989/",
     };
@@ -52,20 +65,29 @@ export default {
   //监控data中的数据变化
   watch: {},
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {
-    this.getList();
-  },
+  created() {},
   methods: {
     getList() {
-      
-      this.$http.get("/getlist").then((res) => {
-        // console.log(res);
-        res.data.list.forEach((item) => {
-          item.message.article.imgurl = this.img_base_url + item.message.article.imgurl;
-          item.headportrait =  this.img_base_url+item.headportrait;
+      this.loading = true; // 这个说的是如果上拉每次加载的时候要保证数据加载完成之后才打开开关
+      this.nowLoading = true;
+      this.$http
+        .get(`/getlist?page=${this.start}&pagesize=${this.nums}`)
+        .then((res) => {
+          this.nowLoading = false //不管有没有数据都得关闭loading
+            // console.log(res);
+            res.data.list.forEach((item) => {
+              item.message.article.imgurl =
+                this.img_base_url + item.message.article.imgurl;
+              item.headportrait = this.img_base_url + item.headportrait;
+            });
+          this.list = this.list.concat(res.data.list);
+          if (res.data.list.length < this.nums) {
+            this.nodata = true;
+          } else {
+            this.start = this.start + 1;
+            this.loading = false;
+          }
         });
-        this.list = res.data.list;
-      });
     },
   },
 
@@ -120,7 +142,7 @@ export default {
           }
           i {
             position: absolute;
-            padding: 2px 6px ;
+            padding: 2px 6px;
             top: 0;
             right: -26px;
             background-color: #f8f8f8;
@@ -177,5 +199,25 @@ export default {
     }
   }
 }
+.nowLoading {
+  height: 30px;
+  padding-left: 35%;
+  line-height: 30px;
+  i {
+    display: inline-block;
+    position: relative;
+    top: -5px;
+  }
+  p {
+    margin-left: 10px;
+    display: inline-block;
+    color: #999999;
+  }
+}
+.nodata {
+  height: 30px;
+  padding-left: 35%;
+  line-height: 30px;
+  color: red;
+}
 </style>
-s

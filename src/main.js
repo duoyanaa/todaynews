@@ -6,7 +6,8 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 
 import Mint from 'mint-ui';
-Vue.use(Mint);
+import 'mint-ui/lib/style.css'
+Vue.use(Mint)
 Vue.use(Vant);
 
 Vue.config.productionTip = false
