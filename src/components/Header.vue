@@ -12,21 +12,7 @@
         <p>发布</p>
       </div>
     </div>
-    <div class="secnav">
-      <ul>
-        <router-link tag="li" to="/first/attention">关注</router-link>
-        <router-link tag="li" to="/first/recommend">推荐</router-link>
-        <router-link tag="li" to="/first/loaclcity">郑州</router-link>
-        <router-link tag="li" to="/first/epidemic">抗疫</router-link>
-        <router-link tag="li" to="/first/hotsearch">热榜</router-link>
-        <router-link tag="li" to="/first/gratis">免费小说</router-link>
-        <router-link tag="li" to="/first/society">社会</router-link>
-        <router-link tag="li" to="/first/recreation">娱乐</router-link>
-        <router-link tag="li" to="/first/technology">科技</router-link>
-        <router-link tag="li" to="/first/military">军事</router-link>
-        <router-view></router-view>
-      </ul>
-    </div>
+    
   </header>
 </template>
 
@@ -52,7 +38,7 @@ export default {
 <style lang="scss" scoped>
 #header {
   width: 100%;
-  height: 90px;
+  height: 50px;
   position: relative;
   border-bottom: 1px solid #cccccc;
 }
@@ -105,30 +91,4 @@ export default {
   color: white;
 }
 
-#header .secnav {
-  height: 38px;
-  width: 100%;
-  position: relative;
-}
-#header .secnav ul {
-  height: 38px;
-  overflow: hidden;
-  overflow-x: auto;
-  white-space: nowrap;
-  // scrollbar-width: none; /* firefox */
-  // -ms-overflow-style: none; /* IE 10+ */
-}
-.secnav ul::-webkit-scrollbar {
-  display: none; /* Chrome Safari */
-}
-#header .secnav ul li {
-  padding: 0 10px;
-  height: 36px;
-  line-height: 36px;
-  display: inline-block;
-}
-.router-link-exact-active {
-  color: red;
-  border-bottom: 2px solid red;
-}
 </style>

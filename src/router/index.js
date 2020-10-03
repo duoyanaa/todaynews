@@ -15,52 +15,52 @@ const router = new VueRouter({
             children: [
                 {
                     path: 'attention',
-                    name: 'Attention',
+                    name: 'FAttention',
                     component: () => import("../views/first/attention/index.vue")
                 },
                 {
                     path: 'recommend',
-                    name: 'Recommend',
+                    name: 'FRecommend',
                     component: () => import("../views/first/recommend/index.vue")
                 },
                 {
                     path: 'loaclcity',
-                    name: 'Loaclcity',
+                    name: 'FLoaclcity',
                     component: () => import("../views/first/loaclcity/index.vue")
                 },
                 {
                     path: 'epidemic',
-                    name: 'Epidemic',
+                    name: 'FEpidemic',
                     component: () => import("../views/first/epidemic/index.vue")
                 },
                 {
                     path: 'hotsearch',
-                    name: 'Hotsearch',
+                    name: 'FHotsearch',
                     component: () => import("../views/first/hotsearch/index.vue")
                 },
                 {
                     path: 'gratis',
-                    name: 'Gratis',
+                    name: 'FGratis',
                     component: () => import("../views/first/gratis/index.vue")
                 },
                 {
                     path: 'society',
-                    name: 'Society',
+                    name: 'FSociety',
                     component: () => import("../views/first/society/index.vue")
                 },
                 {
                     path: 'recreation',
-                    name: 'Recreation',
+                    name: 'FRecreation',
                     component: () => import("../views/first/recreation/index.vue")
                 },
                 {
                     path: 'technology',
-                    name: 'Technology',
+                    name: 'FTechnology',
                     component: () => import("../views/first/technology/index.vue")
                 },
                 {
                     path: 'military',
-                    name: 'Military',
+                    name: 'FMilitary',
                     component: () => import("../views/first/military/index.vue")
                 },
             ]
@@ -68,6 +68,59 @@ const router = new VueRouter({
         {
             path: '/viodes',
             component: () => import("../views/viodes/index.vue"),
+            redirect: '/viodes/recommend',
+            children: [
+                {
+                    path: 'attention',
+                    name: 'Attention',
+                    component: () => import("../views/viodes/attention/index.vue")
+                },
+                {
+                    path: 'recommend',
+                    name: 'Recommend',
+                    component: () => import("../views/viodes/recommend/index.vue")
+                },
+                {
+                    path: 'loaclcity',
+                    name: 'Loaclcity',
+                    component: () => import("../views/viodes/loaclcity/index.vue")
+                },
+                {
+                    path: 'epidemic',
+                    name: 'Epidemic',
+                    component: () => import("../views/viodes/epidemic/index.vue")
+                },
+                {
+                    path: 'hotsearch',
+                    name: 'Hotsearch',
+                    component: () => import("../views/viodes/hotsearch/index.vue")
+                },
+                {
+                    path: 'gratis',
+                    name: 'Gratis',
+                    component: () => import("../views/viodes/gratis/index.vue")
+                },
+                {
+                    path: 'society',
+                    name: 'Society',
+                    component: () => import("../views/viodes/society/index.vue")
+                },
+                {
+                    path: 'recreation',
+                    name: 'Recreation',
+                    component: () => import("../views/viodes/recreation/index.vue")
+                },
+                {
+                    path: 'technology',
+                    name: 'Technology',
+                    component: () => import("../views/viodes/technology/index.vue")
+                },
+                {
+                    path: 'military',
+                    name: 'Military',
+                    component: () => import("../views/viodes/military/index.vue")
+                },
+            ]
         },
         {
             path: '/mine',

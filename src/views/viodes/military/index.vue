@@ -1,5 +1,5 @@
 <template>
-  <div id="" class="content-main">
+  <div id="" class="attention">
     <ul
       v-infinite-scroll="getList"
       infinite-scroll-disabled="loading"
@@ -105,9 +105,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类
-.content-main {
+.attention {
   width: 100%;
-  flex: 1;
   overflow-x: hidden;
   background-color: #f2f2f2;
   // height: 100%;

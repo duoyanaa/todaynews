@@ -1,34 +1,24 @@
 <template>
   <div id="main">
-      <Header></Header>
-      <div id="content">
-      <div>
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
-        waserftghhhhhhhhhhh
+    <Header></Header>
+    <div id="content">
+      <div class="secnav">
+        <ul>
+          <router-link tag="li" to="/viodes/attention">关注</router-link>
+          <router-link tag="li" to="/viodes/recommend">推荐</router-link>
+          <router-link tag="li" to="/viodes/loaclcity">郑州</router-link>
+          <router-link tag="li" to="/viodes/epidemic">抗疫</router-link>
+          <router-link tag="li" to="/viodes/hotsearch">热榜</router-link>
+          <router-link tag="li" to="/viodes/gratis">免费小说</router-link>
+          <router-link tag="li" to="/viodes/society">社会</router-link>
+          <router-link tag="li" to="/viodes/recreation">娱乐</router-link>
+          <router-link tag="li" to="/viodes/technology">科技</router-link>
+          <router-link tag="li" to="/viodes/military">军事</router-link>
+        </ul>
       </div>
+      <router-view> </router-view>
     </div>
-      <Footer></Footer>
+    <Footer></Footer>
   </div>
 </template>
 
@@ -65,10 +55,43 @@ export default {
 </script>
 <style lang="scss" scoped>
 //@import url(); 引入公共css类
-#content{ flex:1; overflow:auto; margin-bottom: 50px; position: relative; display: flex; flex-direction:column;}
-#content div {
-  font-size: 30px;
+#content {
+  flex: 1;
+  overflow: auto;
+  margin-bottom: 50px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+// #content div {
+//   // font-size: 30px;
+//   width: 100%;
+//   overflow-x: hidden;
+// }
+.secnav {
+  height: 38px;
   width: 100%;
-    overflow-x: hidden;
+  position: relative;
+}
+.secnav ul {
+  height: 38px;
+  overflow: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  // scrollbar-width: none; /* firefox */
+  // -ms-overflow-style: none; /* IE 10+ */
+}
+.secnav ul::-webkit-scrollbar {
+  display: none; /* Chrome Safari */
+}
+.secnav ul li {
+  padding: 0 10px;
+  height: 36px;
+  line-height: 36px;
+  display: inline-block;
+}
+.router-link-exact-active {
+  color: red;
+  border-bottom: 2px solid red;
 }
 </style>
