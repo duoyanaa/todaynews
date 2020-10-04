@@ -13,7 +13,13 @@
           <ul class="name">
             <li>
               <h4>{{ item.username }}</h4>
-              <i><van-icon name="cross" size="14" color="#c7c7c7"/></i>
+              <i
+                ><van-icon
+                  @click="deleteSingleData(item._id)"
+                  name="cross"
+                  size="14"
+                  color="#c7c7c7"
+              /></i>
             </li>
             <li>
               <span>09-21 20:07 </span><span>工程师 </span
@@ -38,6 +44,12 @@
         </div>
       </li>
     </ul>
+    <ul class="hate" v-show="hate == true">
+      <li>不感兴趣</li>
+      <li>举报</li>
+      <li>拉黑作者:</li>
+      <li>屏蔽</li>
+    </ul>
     <div class="nowLoading" v-show="nowLoading == true">
       <i><van-loading size="20"/></i>
       <p>正在加载中...</p>
@@ -51,6 +63,7 @@ export default {
   components: {},
   data() {
     return {
+      hate: false,
       nowLoading: false,
       nodata: false,
       start: 1,
@@ -73,13 +86,13 @@ export default {
       this.$http
         .get(`/getlist?page=${this.start}&pagesize=${this.nums}`)
         .then((res) => {
-          this.nowLoading = false //不管有没有数据都得关闭loading
-            // console.log(res);
-            res.data.list.forEach((item) => {
-              item.message.article.imgurl =
-                this.img_base_url + item.message.article.imgurl;
-              item.headportrait = this.img_base_url + item.headportrait;
-            });
+          this.nowLoading = false; //不管有没有数据都得关闭loading
+          // console.log(res);
+          res.data.list.forEach((item) => {
+            item.message.article.imgurl =
+              this.img_base_url + item.message.article.imgurl;
+            item.headportrait = this.img_base_url + item.headportrait;
+          });
           this.list = this.list.concat(res.data.list);
           if (res.data.list.length < this.nums) {
             this.nodata = true;
@@ -88,6 +101,10 @@ export default {
             this.loading = false;
           }
         });
+    },
+    deleteSingleData(id) {
+      console.log(id);
+      this.hate = !this.hate;
     },
   },
 
@@ -110,6 +127,16 @@ export default {
   flex: 1;
   overflow-x: hidden;
   background-color: #f2f2f2;
+  position: relative;
+  .hate {
+      height: 120px;
+      width: 94%;
+      margin-left: 2%;
+      background-color: white;
+      position: absolute;
+      z-index: 1;
+      top: 25px;
+    }
   // height: 100%;
   .moudle {
     margin-bottom: 7px;
@@ -198,6 +225,7 @@ export default {
         }
       }
     }
+    
   }
 }
 .nowLoading {

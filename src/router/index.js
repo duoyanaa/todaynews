@@ -66,6 +66,11 @@ const router = new VueRouter({
             ]
         },
         {
+            path: '/personcenter',
+            name:'Personcenter',
+            component: () => import("../views/personcenter/index.vue"),
+        },
+        {
             path: '/viodes',
             component: () => import("../views/viodes/index.vue"),
             redirect: '/viodes/recommend',
